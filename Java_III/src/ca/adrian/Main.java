@@ -2,14 +2,16 @@ package ca.adrian;
 
 import ca.adrian.exceptions.ExceptionsDemo;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        ExceptionsDemo.show();
-        Scanner in = new Scanner(System.in);
-
+        try {
+            ExceptionsDemo.show();
+        } catch (Throwable e) {
+            System.out.println("An unexpected error occurred.");
+        }
     }
 }
