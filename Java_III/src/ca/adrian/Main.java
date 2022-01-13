@@ -1,11 +1,7 @@
 package ca.adrian;
 
 import ca.adrian.exceptions.Account;
-import ca.adrian.exceptions.ExceptionsDemo;
-import ca.adrian.exceptions.InsufficientFundsException;
-
-import java.io.IOException;
-import java.util.Scanner;
+import ca.adrian.exceptions.AccountException;
 
 public class Main {
 
@@ -14,8 +10,14 @@ public class Main {
 
         try {
             account.withDraw(10);
-        } catch (InsufficientFundsException e) {
-            System.out.println(e.getMessage());
+        } catch (AccountException e) {
+            e.printStackTrace();
+            var cause  = e.getCause().getMessage();
+            System.out.println(cause);
         }
     }
 }
+
+/*
+
+ */
