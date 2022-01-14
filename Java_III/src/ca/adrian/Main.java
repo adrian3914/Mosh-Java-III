@@ -8,16 +8,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /*
-            Primitive types in Generic, we MUST use the wrapper classes
-            int -> Integer
-            float -> Float
-            boolean -> Boolean
-
-         */
-        GenericList<Integer> numbers = new GenericList<>();
-        numbers.add(1); // Boxing
-        int number = numbers.get(0); // Unboxing
     }
 }
 
@@ -53,4 +43,15 @@ public class Main {
      var list = new GenericList<User>();
         list.add(new User());
         var user = list.get(0);
+
+
+        Primitive types in Generic, we MUST use the wrapper classes
+            int -> Integer
+            float -> Float
+            boolean -> Boolean
+
+        GenericList<Integer> numbers = new GenericList<>();
+        numbers.add(1); // Boxing
+        int number = numbers.get(0); // Unboxing
  */
+
