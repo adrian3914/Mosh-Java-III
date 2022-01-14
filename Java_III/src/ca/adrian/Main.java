@@ -2,6 +2,7 @@ package ca.adrian;
 
 
 import ca.adrian.generics.GenericList;
+import ca.adrian.generics.Instructor;
 import ca.adrian.generics.User;
 import ca.adrian.generics.Utils;
 import jdk.jshell.execution.Util;
@@ -9,7 +10,12 @@ import jdk.jshell.execution.Util;
 public class Main {
 
     public static void main(String[] args) {
-        Utils.print("Age", 37);
+        User user1 = new Instructor(10);
+        User user2 = new User(20);
+        Utils.printUser(user2);
+
+        var users = new GenericList<User>();
+        Utils.printUsers(users);
     }
 }
 

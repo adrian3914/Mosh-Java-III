@@ -1,6 +1,6 @@
 package ca.adrian.generics;
 
-public class GenericList<T extends Comparable & Cloneable> {
+public class GenericList<T extends Comparable> {
     // ClassName<T> Parameter for the class -> the type of object
     //<T> -> Type || Template
     //<E> -> Element, use it when we want to implement a class that acts as a collection

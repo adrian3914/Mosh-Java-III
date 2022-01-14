@@ -24,4 +24,16 @@ public class Utils {
         System.out.println(key + "=" + value);
     }
 
+    public static void printUser(User user){
+        System.out.println(user);
+    }
+
+    // class CAP#1 extends User{}
+    // class Instructor extends User {...}
+    public static void printUsers(
+            GenericList<? super User> users){
+        users.add(new User(23));
+        System.out.println(users);
+    }
+
 }
