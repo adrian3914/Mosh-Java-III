@@ -13,7 +13,6 @@ public class Account {
     public void withDraw(float value) throws AccountException {
         if (value > balance){
             throw new AccountException(new InsufficientFundsException());
-
         }
     }
 }
