@@ -7,6 +7,16 @@ import ca.adrian.generics.User;
 public class Main {
 
     public static void main(String[] args) {
+        // Comparing two Users objects
+        var user1 = new User(26);
+        var user2 = new User(25);
+
+       if (user1.compareTo(user2) < 0)
+           System.out.println("user1 < user2");
+       else if (user1.compareTo(user2) == 0)
+           System.out.println("user1 = user2");
+       else
+           System.out.println("user 1 > user2");
 
     }
 }

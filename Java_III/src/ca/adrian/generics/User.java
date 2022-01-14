@@ -1,9 +1,17 @@
 package ca.adrian.generics;
 
-public class User implements Comparable{
+public class User implements Comparable<User>{
+    private int points;
+
+    public User(int points) {
+        this.points = points;
+    }
 
     @Override
-    public int compareTo(Object o) {
-        return 0;
+    public int compareTo(User other) {
+        // this < o -> -#
+        // this == o -> 0
+        // this > o -> +#
+       return this.points - other.points;
     }
 }
