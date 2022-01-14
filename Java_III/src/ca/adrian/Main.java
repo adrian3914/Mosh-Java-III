@@ -3,20 +3,11 @@ package ca.adrian;
 
 import ca.adrian.generics.GenericList;
 import ca.adrian.generics.User;
+import ca.adrian.generics.Utils;
 
 public class Main {
 
     public static void main(String[] args) {
-        // Comparing two Users objects
-        var user1 = new User(26);
-        var user2 = new User(25);
-
-       if (user1.compareTo(user2) < 0)
-           System.out.println("user1 < user2");
-       else if (user1.compareTo(user2) == 0)
-           System.out.println("user1 = user2");
-       else
-           System.out.println("user 1 > user2");
 
     }
 }
@@ -63,5 +54,19 @@ public class Main {
         GenericList<Integer> numbers = new GenericList<>();
         numbers.add(1); // Boxing
         int number = numbers.get(0); // Unboxing
+ */
+
+/*
+    The Comparable<> Interface
+      // Comparing two Users objects
+        var user1 = new User(26);
+        var user2 = new User(25);
+
+       if (user1.compareTo(user2) < 0)
+           System.out.println("user1 < user2");
+       else if (user1.compareTo(user2) == 0)
+           System.out.println("user1 = user2");
+       else
+           System.out.println("user 1 > user2");
  */
 
