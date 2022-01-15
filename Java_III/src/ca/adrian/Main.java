@@ -5,17 +5,36 @@ import ca.adrian.generics.GenericList;
 import ca.adrian.generics.Instructor;
 import ca.adrian.generics.User;
 import ca.adrian.generics.Utils;
+import ca.adrian.generics.practice.GenericExercises;
 import jdk.jshell.execution.Util;
+
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Stack;
 
 public class Main {
 
     public static void main(String[] args) {
-        User user1 = new Instructor(10);
-        User user2 = new User(20);
-        Utils.printUser(user2);
+        // Array
+        char[] array = new char[26];
+        int j = 0;
+        // ArrayList
+        var arrayList  = new ArrayList<Character>();
+        var stack  = new Stack<Character>();
 
-        var users = new GenericList<User>();
-        Utils.printUsers(users);
+        for (int i = 65; i < (65 + 26); i++){
+            array[j] = (char)i;
+        }
+        System.out.println();
+    }
+
+    public static <T> void printCollection(Collection<T> list){
+
+        for (T item: list){
+            System.out.println(item);
+        }
     }
 }
 
