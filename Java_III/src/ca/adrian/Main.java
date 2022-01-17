@@ -3,23 +3,29 @@ package ca.adrian;
 import ca.adrian.collections.Customer;
 import ca.adrian.collections.EmailComparator;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
 public class Main {
 
     public static void main(String[] args) {
-        List<Customer> customers = new ArrayList<>();
-        customers.add(new Customer("b", "e3"));
-        customers.add(new Customer("a", "e2"));
-        customers.add(new Customer("c", "e1"));
-        Collections.sort(customers, new EmailComparator());
+        Queue<String> queue = new ArrayDeque<>();
+        queue.add("c");
+        queue.add("a");
+        // adding to a queue also we can use offer()
+        queue.offer("b");
+        // b -> a -> c
 
-        for (Customer c: customers){
-            System.out.println(c);
-        }
+        // gets the element at the front but doesn't remove it
+        var front = queue.peek();
+        System.out.println(front);
+
+        // remove and return the element at the front
+        var removedC = queue.remove(); // throws exception if queue is empty
+        queue.poll(); // return null if queue is empty
+        System.out.println(queue);
+
+
     }
 }
 
@@ -95,5 +101,19 @@ public class Main {
             System.out.println(current);
 
       }
+ */
+
+/*
+        // Comparator Interface
+        List<Customer> customers = new ArrayList<>();
+        customers.add(new Customer("b", "e3"));
+        customers.add(new Customer("a", "e2"));
+        customers.add(new Customer("c", "e1"));
+        Collections.sort(customers, new EmailComparator());
+
+
+        for (Customer c: customers){
+            System.out.println(c);
+        }
  */
 
