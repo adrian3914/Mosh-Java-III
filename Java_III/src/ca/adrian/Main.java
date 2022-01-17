@@ -1,17 +1,23 @@
 package ca.adrian;
 
-import ca.adrian.collections.CollectionsDemo;
-import ca.adrian.collections.ListDemo;
-import ca.adrian.generics.GenericList;
-
+import ca.adrian.collections.Customer;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Stack;
+import java.util.Collections;
+import java.util.List;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        ListDemo.show();
+        List<Customer> customers = new ArrayList<>();
+        customers.add(new Customer("b"));
+        customers.add(new Customer("a"));
+        customers.add(new Customer("c"));
+        Collections.sort(customers);
+
+        for (Customer c: customers){
+            System.out.println(c);
+        }
     }
 }
 

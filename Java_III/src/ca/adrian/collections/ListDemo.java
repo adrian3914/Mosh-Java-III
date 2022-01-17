@@ -42,7 +42,5 @@ public class ListDemo {
         // subList()
         System.out.println("subList(int fromIndex, int toIndex) returns a new list within the indexes specified");
         System.out.println(list.subList(0,3));
-
-
     }
 }
