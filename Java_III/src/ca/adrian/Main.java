@@ -1,40 +1,26 @@
 package ca.adrian;
 
-
 import ca.adrian.generics.GenericList;
-import ca.adrian.generics.Instructor;
-import ca.adrian.generics.User;
-import ca.adrian.generics.Utils;
-import ca.adrian.generics.practice.GenericExercises;
-import jdk.jshell.execution.Util;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Stack;
 
 public class Main {
 
     public static void main(String[] args) {
-        // Array
-        char[] array = new char[26];
-        int j = 0;
-        // ArrayList
-        var arrayList  = new ArrayList<Character>();
-        var stack  = new Stack<Character>();
+      var list = new GenericList<String>();
+      var iterator = list.iterator();
+      list.add("a");
+      list.add("b");
+      list.add("c");
 
-        for (int i = 65; i < (65 + 26); i++){
-            array[j] = (char)i;
-        }
-        System.out.println();
-    }
+      // loop using iterator
+        while (iterator.hasNext()){
+            var current = iterator.next(); // it returns the current item and moves to the next
+            System.out.println(current);
 
-    public static <T> void printCollection(Collection<T> list){
-
-        for (T item: list){
-            System.out.println(item);
-        }
+      }
     }
 }
 
