@@ -1,5 +1,6 @@
 package ca.adrian;
 
+import ca.adrian.collections.CollectionsDemo;
 import ca.adrian.generics.GenericList;
 
 import java.util.ArrayList;
@@ -9,18 +10,7 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) {
-      var list = new GenericList<String>();
-      var iterator = list.iterator();
-      list.add("a");
-      list.add("b");
-      list.add("c");
-
-      // loop using iterator
-        while (iterator.hasNext()){
-            var current = iterator.next(); // it returns the current item and moves to the next
-            System.out.println(current);
-
-      }
+        CollectionsDemo.show();
     }
 }
 
@@ -80,5 +70,21 @@ public class Main {
            System.out.println("user1 = user2");
        else
            System.out.println("user 1 > user2");
+ */
+
+/*
+    // Iterable Interface
+    var list = new GenericList<String>();
+      var iterator = list.iterator();
+      list.add("a");
+      list.add("b");
+      list.add("c");
+
+      // loop using iterator
+        while (iterator.hasNext()){
+            var current = iterator.next(); // it returns the current item and moves to the next
+            System.out.println(current);
+
+      }
  */
 
