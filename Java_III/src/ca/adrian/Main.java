@@ -1,6 +1,7 @@
 package ca.adrian;
 
 import ca.adrian.collections.CollectionsDemo;
+import ca.adrian.collections.ListDemo;
 import ca.adrian.generics.GenericList;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) {
-        CollectionsDemo.show();
+        ListDemo.show();
     }
 }
 

@@ -5,8 +5,10 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class CollectionsDemo {
+
     public static void show(){
-        Collection<String> collection = new ArrayList<>();// we can initialize Collection Interface by passing one of the classes that implement it.
+        // we can initialize Collection Interface by passing one of the classes that implement it.
+        Collection<String> collection = new ArrayList<>();
         // adding one element at the time
         collection.add("a");
         collection.add("b");
@@ -18,7 +20,6 @@ public class CollectionsDemo {
         for (var item: collection){
             System.out.println(item);
         }
-
         // size method
         System.out.println("The size of the collection is: " + collection.size());
 
@@ -50,7 +51,6 @@ public class CollectionsDemo {
 
         System.out.println(collection == other);
         System.out.println(collection.equals(other));
-
-
     }
+
 }
