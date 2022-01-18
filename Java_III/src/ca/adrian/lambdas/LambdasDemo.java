@@ -1,12 +1,12 @@
 package ca.adrian.lambdas;
 
 public class LambdasDemo {
-    public void print(String message){}// Matches the signature of the print() in the Printer interface
+    public LambdasDemo(String message) {
+    }
 
     public static void show(){
-       var demo = new LambdasDemo();
-       greet(message -> System.out.println(message));
-       greet(demo::print);
+        greet(message -> new LambdasDemo(message));
+        greet(LambdasDemo::new);
     }
 
     public static void greet(Printer printer){
@@ -41,4 +41,14 @@ public class LambdasDemo {
         // Class/Object::method
 
         // This two lines are the same
+
+        -------------------------------------------------------------
+        // Accessing method in the class
+       public void print(String message){}// Matches the signature of the print() in the Printer interface
+
+       public static void show(){
+       var demo = new LambdasDemo();
+       greet(message -> System.out.println(message));
+       greet(demo::print);
+    }
  */
