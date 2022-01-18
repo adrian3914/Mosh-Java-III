@@ -4,6 +4,7 @@ import ca.adrian.collections.Customer;
 import ca.adrian.collections.EmailComparator;
 import ca.adrian.collections.MapDemo;
 import ca.adrian.collections.SetDemo;
+import ca.adrian.lambdas.LambdasDemo;
 
 import java.util.*;
 
@@ -11,7 +12,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        MapDemo.show();
+        LambdasDemo.show();
 
     }
 }
