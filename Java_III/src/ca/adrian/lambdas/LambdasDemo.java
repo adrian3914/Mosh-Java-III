@@ -4,13 +4,10 @@ public class LambdasDemo {
 
 
     public static void show(){
-        String  prefix = "-";
-        // Passing Lambda expression as an argument to a method
-        //greet(message -> System.out.println(this + message));
-
-        // Initializing Variable Interface
-        Printer printer = message -> System.out.println(message);
-        printer.print("Hello!");
+        greet(message -> System.out.println(message));
+        // Method reference
+        greet(System.out::println);
+        // Class/Object::method
     }
 
     public static void greet(Printer printer){
@@ -26,4 +23,13 @@ public class LambdasDemo {
                 System.out.println(message);
             }
         });
+ */
+
+/*
+        // Passing Lambda expression as an argument to a method
+        greet(message -> System.out.println(this + message));
+
+        // Initializing Variable Interface
+        Printer printer = message -> System.out.println(message);
+        printer.print("Hello!");
  */
