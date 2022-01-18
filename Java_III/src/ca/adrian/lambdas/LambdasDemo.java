@@ -1,13 +1,12 @@
 package ca.adrian.lambdas;
 
 public class LambdasDemo {
-
+    public void print(String message){}// Matches the signature of the print() in the Printer interface
 
     public static void show(){
-        greet(message -> System.out.println(message));
-        // Method reference
-        greet(System.out::println);
-        // Class/Object::method
+       var demo = new LambdasDemo();
+       greet(message -> System.out.println(message));
+       greet(demo::print);
     }
 
     public static void greet(Printer printer){
@@ -32,4 +31,14 @@ public class LambdasDemo {
         // Initializing Variable Interface
         Printer printer = message -> System.out.println(message);
         printer.print("Hello!");
+ */
+
+/*
+        // Converting lambda to method reference
+        greet(message -> System.out.println(message));
+        // Method reference
+        greet(System.out::println);
+        // Class/Object::method
+
+        // This two lines are the same
  */
