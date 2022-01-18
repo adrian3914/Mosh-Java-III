@@ -18,16 +18,17 @@ public class SetDemo {
         //System.out.println(set2);
 
         // Set operations
+        // REMOVING DUPLICATES
         Set<String> set3 = new HashSet<>(Arrays.asList("a", "b","c"));
         Set<String> set4 = new HashSet<>(Arrays.asList("b", "c", "d"));
 
         // UNION -> Combination of two Sets
-//        set3.addAll(set4);
-//        System.out.println(set 3);
+        set3.addAll(set4);
+        System.out.println(set3);
 
         // INTERCEPTION -> it retains only items present on both sets
-//       set3.retainAll(set4);
-//       System.out.println(set3);
+       set3.retainAll(set4);
+       System.out.println(set3);
 
         // DIFFERENCE -> it removes all items that both set contains
         set3.removeAll(set4);
