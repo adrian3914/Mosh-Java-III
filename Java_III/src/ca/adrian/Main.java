@@ -2,6 +2,7 @@ package ca.adrian;
 
 import ca.adrian.collections.Customer;
 import ca.adrian.collections.EmailComparator;
+import ca.adrian.collections.SetDemo;
 
 import java.util.*;
 
@@ -9,22 +10,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Queue<String> queue = new ArrayDeque<>();
-        queue.add("c");
-        queue.add("a");
-        // adding to a queue also we can use offer()
-        queue.offer("b");
-        // b -> a -> c
-
-        // gets the element at the front but doesn't remove it
-        var front = queue.peek();
-        System.out.println(front);
-
-        // remove and return the element at the front
-        var removedC = queue.remove(); // throws exception if queue is empty
-        queue.poll(); // return null if queue is empty
-        System.out.println(queue);
-
+        SetDemo.show();
 
     }
 }
@@ -115,5 +101,24 @@ public class Main {
         for (Customer c: customers){
             System.out.println(c);
         }
+ */
+
+/*
+    // Queue interface
+        Queue<String> queue = new ArrayDeque<>();
+        queue.add("c");
+        queue.add("a");
+        // adding to a queue also we can use offer()
+        queue.offer("b");
+        // b -> a -> c
+
+        // gets the element at the front but doesn't remove it
+        var front = queue.peek();
+        System.out.println(front);
+
+        // remove and return the element at the front
+        var removedC = queue.remove(); // throws exception if queue is empty
+        queue.poll(); // return null if queue is empty
+        System.out.println(queue);
  */
 
