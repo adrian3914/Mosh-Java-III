@@ -1,19 +1,23 @@
 package ca.adrian.lambdas;
 
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.*;
 
 public class LambdasDemo {
 
     public static void show(){
-        // Consumer Interface - chaining consumers default method andThen(Consumer<? super T> after)
-        List<String> list = List.of("a", "b", "c");
-        Consumer<String> print = item -> System.out.print(item);
-        Consumer<String> printUpperCase = item -> System.out.print(item.toUpperCase());
+        // Specialization of the supplier Interface to work with primitive types
+        DoubleSupplier doubleSupplier = () -> Math.random();
+        IntSupplier intSupplier = () -> 12;
+        LongSupplier longSupplier = () -> 12L;
+        BooleanSupplier booleanSupplier = () -> true;
 
-        // forEach expects a consumer Object Consumer<? super String>
-        list.forEach(print.andThen(printUpperCase).andThen(print));
+        // Supplier Interface
+        Supplier<Double> getRandom = () -> Math.random();
 
+        // Calling the supplier, at this point it will provide a value
+        var random  = getRandom.get();
+        System.out.println(random);
     }
 }
 
@@ -74,5 +78,11 @@ public class LambdasDemo {
 
         // ---------------------------------------------------------------------
 
+     // Consumer Interface - chaining consumers default method andThen(Consumer<? super T> after)
+        List<String> list = List.of("a", "b", "c");
+        Consumer<String> print = item -> System.out.print(item);
+        Consumer<String> printUpperCase = item -> System.out.print(item.toUpperCase());
 
+        // forEach expects a consumer Object Consumer<? super String>
+        list.forEach(print.andThen(printUpperCase).andThen(print));
  */
