@@ -6,18 +6,12 @@ import java.util.function.*;
 public class LambdasDemo {
 
     public static void show(){
-        // Specialization of the supplier Interface to work with primitive types
-        DoubleSupplier doubleSupplier = () -> Math.random();
-        IntSupplier intSupplier = () -> 12;
-        LongSupplier longSupplier = () -> 12L;
-        BooleanSupplier booleanSupplier = () -> true;
+        // The Function Interface Function<T, R>
+        // T -> input , R -> Return
+        Function<String, Integer> map = str -> str.length();
+        var length = map.apply("Adrian");
+        System.out.println(length);
 
-        // Supplier Interface
-        Supplier<Double> getRandom = () -> Math.random();
-
-        // Calling the supplier, at this point it will provide a value
-        var random  = getRandom.get();
-        System.out.println(random);
     }
 }
 
@@ -85,4 +79,19 @@ public class LambdasDemo {
 
         // forEach expects a consumer Object Consumer<? super String>
         list.forEach(print.andThen(printUpperCase).andThen(print));
+ */
+
+/*
+     // Specialization of the supplier Interface to work with primitive types
+        DoubleSupplier doubleSupplier = () -> Math.random();
+        IntSupplier intSupplier = () -> 12;
+        LongSupplier longSupplier = () -> 12L;
+        BooleanSupplier booleanSupplier = () -> true;
+
+        // Supplier Interface
+        Supplier<Double> getRandom = () -> Math.random();
+
+        // Calling the supplier, at this point it will provide a value
+        var random  = getRandom.get();
+        System.out.println(random);
  */
