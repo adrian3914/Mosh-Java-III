@@ -5,6 +5,8 @@ import java.util.List;
 public class LambdasDemo {
 
     public static void show(){
+        // Consumer Interface example
+
         List<Integer> list = List.of(1, 2 , 3);
 
         // Imperative programming (for. if/else, switch/case)
@@ -12,11 +14,12 @@ public class LambdasDemo {
             System.out.println(item);
 
         // Declarative programming
+        // forEach expects a Consumer
         // Lambda Expression
         list.forEach(item -> System.out.println(item));
+
         // Method referencing
         list.forEach(System.out::println);
-
     }
 }
 
@@ -57,4 +60,8 @@ public class LambdasDemo {
        greet(message -> System.out.println(message));
        greet(demo::print);
     }
+ */
+
+/*
+
  */
