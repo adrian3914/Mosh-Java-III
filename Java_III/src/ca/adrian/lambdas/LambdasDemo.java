@@ -1,25 +1,19 @@
 package ca.adrian.lambdas;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class LambdasDemo {
 
     public static void show(){
-        // Consumer Interface example
+        // Consumer Interface - chaining consumers default method andThen(Consumer<? super T> after)
+        List<String> list = List.of("a", "b", "c");
+        Consumer<String> print = item -> System.out.print(item);
+        Consumer<String> printUpperCase = item -> System.out.print(item.toUpperCase());
 
-        List<Integer> list = List.of(1, 2 , 3);
+        // forEach expects a consumer Object Consumer<? super String>
+        list.forEach(print.andThen(printUpperCase).andThen(print));
 
-        // Imperative programming (for. if/else, switch/case)
-        for (Integer item: list)
-            System.out.println(item);
-
-        // Declarative programming
-        // forEach expects a Consumer
-        // Lambda Expression
-        list.forEach(item -> System.out.println(item));
-
-        // Method referencing
-        list.forEach(System.out::println);
     }
 }
 
@@ -63,5 +57,22 @@ public class LambdasDemo {
  */
 
 /*
+    // Consumer Interface example - abstract method accept(T t);
+        List<Integer> list = List.of(1, 2 , 3);
+
+        // Imperative programming (for. if/else, switch/case)
+        for (Integer item: list)
+            System.out.println(item);
+
+        // Declarative programming
+        // forEach expects a Consumer
+        // Lambda Expression
+        list.forEach(item -> System.out.println(item));
+
+        // Method referencing
+        list.forEach(System.out::println);
+
+        // ---------------------------------------------------------------------
+
 
  */
