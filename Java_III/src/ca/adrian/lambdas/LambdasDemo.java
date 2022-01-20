@@ -1,17 +1,28 @@
 package ca.adrian.lambdas;
 
-import java.util.List;
 import java.util.function.*;
 
 public class LambdasDemo {
 
     public static void show(){
-        // The Function Interface Function<T, R>
-        // T -> input , R -> Return
-        Function<String, Integer> map = str -> str.length();
-        var length = map.apply("Adrian");
-        System.out.println(length);
+      // Composing functions
+        // input: "key:value"
+        // first: "key=value"
+        // second: {key=value}
+        String input = "key:value";
+        Function<String, String> replaceColon = inputStr -> inputStr.replace(':', '=');
+        Function<String, String> addBraces = inputStr -> "{" + inputStr + "}";
 
+        // Declarative Programming
+        // andThen()
+        var result = replaceColon
+                .andThen(addBraces)
+                .apply(input);
+
+        // compose()
+        result = addBraces.compose(replaceColon).apply(input);
+
+        System.out.println(result);
     }
 }
 
@@ -94,4 +105,12 @@ public class LambdasDemo {
         // Calling the supplier, at this point it will provide a value
         var random  = getRandom.get();
         System.out.println(random);
+ */
+
+/*
+      // The Function Interface Function<T, R>
+        // T -> input , R -> Return
+        Function<String, Integer> map = str -> str.length();
+        var length = map.apply("Adrian");
+        System.out.println(length);
  */
