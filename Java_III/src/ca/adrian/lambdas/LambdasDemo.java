@@ -6,7 +6,7 @@ public class LambdasDemo {
 
     public static void show(){
         // UnaryOperator Interface extends Function<T, T>
-        UnaryOperator<Integer> square = n -> n * n;
+        UnaryOperator<Integer> square = (n) -> n * n;
         UnaryOperator<Integer> increment = n -> n + 1;
 
         var result = increment.andThen(square).apply(1);
@@ -148,5 +148,12 @@ public class LambdasDemo {
         Function<Integer, Integer> square = a -> a * a;
 
         var result  = sum.andThen(square).apply(2,1);
+        System.out.println(result);
+        --------------------------------------------------
+        // UnaryOperator Interface extends Function<T, T>
+        UnaryOperator<Integer> square = n -> n * n;
+        UnaryOperator<Integer> increment = n -> n + 1;
+
+        var result = increment.andThen(square).apply(1);
         System.out.println(result);
  */

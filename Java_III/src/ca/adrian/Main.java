@@ -5,6 +5,7 @@ import ca.adrian.collections.EmailComparator;
 import ca.adrian.collections.MapDemo;
 import ca.adrian.collections.SetDemo;
 import ca.adrian.lambdas.LambdasDemo;
+import ca.adrian.streams.StreamsDemo;
 
 import java.util.*;
 
@@ -12,7 +13,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        LambdasDemo.show();
+        StreamsDemo.show();
 
     }
 }
