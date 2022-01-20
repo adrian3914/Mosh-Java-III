@@ -1,25 +1,22 @@
 package ca.adrian.streams;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
+
 
 public class StreamsDemo {
     public static void show(){
         // list of movies -> list of movie Titles
         List<Movie> movies = List.of(
-                new Movie("a", 10),
-                new Movie("b", 15),
+                new Movie("b", 10),
+                new Movie("a", 15),
                 new Movie("c", 30)
 
         );
 
-        // Slicing a stream
+        // getting a stream
         movies.stream()
-                .takeWhile( m -> m.getLikes() < 30)
+                .sorted(Comparator.comparing(Movie::getTitle).reversed())
                 .forEach(m -> System.out.println(m.getTitle()));
 
     }
@@ -103,4 +100,12 @@ public class StreamsDemo {
         movies.stream()
                 .filter(isPopular)
                 .forEach(movie -> System.out.println(movie));
+
+        // SLICING
+         // Slicing a stream
+        movies.stream()
+                .takeWhile( m -> m.getLikes() < 30)
+                .forEach(m -> System.out.println(m.getTitle()));
  */
+
+

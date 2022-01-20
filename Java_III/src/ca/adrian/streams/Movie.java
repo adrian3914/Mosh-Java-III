@@ -1,6 +1,6 @@
 package ca.adrian.streams;
 
-public class Movie {
+public class Movie implements Comparable<Movie>{
     private String title;
 
     private int likes;
@@ -24,5 +24,10 @@ public class Movie {
                 "title='" + title + '\'' +
                 ", likes=" + likes +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Movie o) {
+        return this.compareTo(o);
     }
 }
