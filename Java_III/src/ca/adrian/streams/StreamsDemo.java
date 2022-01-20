@@ -21,7 +21,7 @@ public class StreamsDemo {
 
         Optional<Integer> sum = movies.stream()
                 .map( m -> m.getLikes())
-                .reduce((a, b) -> a + b);
+                .reduce(Integer::sum);
 
         System.out.println(sum.orElse(0));
 
