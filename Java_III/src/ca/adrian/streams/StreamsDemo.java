@@ -19,11 +19,11 @@ public class StreamsDemo {
         // reduce -> [30, 30]
         // reduce -> 60
 
-        Optional<Integer> sum = movies.stream()
+        Integer sum = movies.stream()
                 .map( m -> m.getLikes())
-                .reduce(Integer::sum);
+                .reduce(0, Integer::sum);
 
-        System.out.println(sum.orElse(0));
+        System.out.println(sum);
 
     }
 }
