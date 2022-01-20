@@ -6,21 +6,47 @@ import java.util.List;
 
 public class StreamsDemo {
     public static void show(){
-        // PEEK -> good for trouble shouting problems
+        // SIMPLE REDUCERS stream<T> -> single Obj
         // list of movies -> list of movie Titles
         List<Movie> movies = List.of(
-                new Movie("a", 10),
                 new Movie("a", 10),
                 new Movie("b", 15),
                 new Movie("c", 30)
         );
 
-        movies.stream()
-                .filter( m -> m.getLikes() > 10)
-                .peek(m -> System.out.println("Filtered:" + m.getLikes()))
-                .map(Movie::getTitle)
-                .peek(t -> System.out.println("Mapped:" + t))
-                .forEach(System.out::println);
+        // count
+       var count = movies.stream()
+               .count();
+        System.out.println("Total movies: " + count);
+
+       var anyMatch = movies.stream()
+                       .anyMatch(m -> m.getLikes() > 20);
+        System.out.println("Any movie likes > 20: " + anyMatch);
+
+       var allMatch = movies.stream()
+                       .allMatch(m -> m.getLikes() > 20);
+        System.out.println("All movie likes > 20: " + allMatch);
+
+        var firstMovie = movies.stream()
+                .findFirst()
+                .get();
+        System.out.println("First Movie: " + firstMovie);
+
+        var any = movies.stream()
+                .findAny()
+                .get();
+        System.out.println("Any Movie: " + any);
+
+        var max = movies.stream()
+                .max(Comparator.comparing(movie -> movie.getTitle()))
+                .get();
+        System.out.println("Max: " + max);
+
+        var min = movies.stream()
+                .min(Comparator.comparing(movie -> movie.getTitle()))
+                .get();
+        System.out.println("Min: " + min);
+
     }
 }
 
@@ -129,6 +155,24 @@ public class StreamsDemo {
         movies.stream()
                 .map(Movie::getLikes)
                 .distinct()
+                .forEach(System.out::println);
+ */
+
+/*
+        // PEEK -> good for trouble shouting problems
+        // list of movies -> list of movie Titles
+        List<Movie> movies = List.of(
+                new Movie("a", 10),
+                new Movie("a", 10),
+                new Movie("b", 15),
+                new Movie("c", 30)
+        );
+
+        movies.stream()
+                .filter( m -> m.getLikes() > 10)
+                .peek(m -> System.out.println("Filtered:" + m.getLikes()))
+                .map(Movie::getTitle)
+                .peek(t -> System.out.println("Mapped:" + t))
                 .forEach(System.out::println);
  */
 
