@@ -6,19 +6,21 @@ import java.util.List;
 
 public class StreamsDemo {
     public static void show(){
+        // GETTING DISTINCT ELEMENTS
+
         // list of movies -> list of movie Titles
         List<Movie> movies = List.of(
-                new Movie("b", 10),
-                new Movie("a", 15),
+                new Movie("a", 10),
+                new Movie("a", 10),
+                new Movie("b", 15),
                 new Movie("c", 30)
-
         );
 
-        // getting a stream
+        // Getting unique values with distinct()
         movies.stream()
-                .sorted(Comparator.comparing(Movie::getTitle).reversed())
-                .forEach(m -> System.out.println(m.getTitle()));
-
+                .map(Movie::getLikes)
+                .distinct()
+                .forEach(System.out::println);
     }
 }
 
@@ -29,7 +31,6 @@ public class StreamsDemo {
                 new Movie("a", 10),
                 new Movie("b", 15),
                 new Movie("c", 20)
-
         );
 
         // Imperative Programming -> how something should be done
@@ -105,6 +106,20 @@ public class StreamsDemo {
          // Slicing a stream
         movies.stream()
                 .takeWhile( m -> m.getLikes() < 30)
+                .forEach(m -> System.out.println(m.getTitle()));
+ */
+
+/*
+     // SORTING
+      List<Movie> movies = List.of(
+                new Movie("a", 10),
+                new Movie("b", 15),
+                new Movie("c", 20)
+
+        );
+     // getting a stream
+        movies.stream()
+                .sorted(Comparator.comparing(Movie::getTitle).reversed())
                 .forEach(m -> System.out.println(m.getTitle()));
  */
 
