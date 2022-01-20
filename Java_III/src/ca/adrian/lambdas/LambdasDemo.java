@@ -5,13 +5,13 @@ import java.util.function.*;
 public class LambdasDemo {
 
     public static void show(){
-        // a, b -> a+b -> square
-        // BinaryOperator interface
-        BinaryOperator<Integer> sum = (a, b) -> a + b;
-        Function<Integer, Integer> square = a -> a * a;
+        // UnaryOperator Interface extends Function<T, T>
+        UnaryOperator<Integer> square = n -> n * n;
+        UnaryOperator<Integer> increment = n -> n + 1;
 
-        var result  = sum.andThen(square).apply(2,1);
+        var result = increment.andThen(square).apply(1);
         System.out.println(result);
+
     }
 }
 
@@ -138,5 +138,15 @@ public class LambdasDemo {
         Predicate<String> hasLeftAndRightBrace = hasLeftBrace.and(hasRightBrace);
 
         var result = hasLeftAndRightBrace.test("{Hello World!}");
+        System.out.println(result);
+ */
+
+/*
+        // BinaryOperator interface
+        // a, b -> a+b -> square
+        BinaryOperator<Integer> sum = (a, b) -> a + b;
+        Function<Integer, Integer> square = a -> a * a;
+
+        var result  = sum.andThen(square).apply(2,1);
         System.out.println(result);
  */
