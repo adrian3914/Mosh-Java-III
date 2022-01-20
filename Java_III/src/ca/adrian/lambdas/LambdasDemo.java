@@ -5,10 +5,12 @@ import java.util.function.*;
 public class LambdasDemo {
 
     public static void show(){
-      // The Predicate interface -> use for filtering or checking
-      // "Sky"
-        Predicate<String> isLongerThan5 = str -> str.length() > 5;
-        var result = isLongerThan5.test("sky");
+        // Combining predicates
+        Predicate<String> hasLeftBrace = str -> str.startsWith("{");
+        Predicate<String> hasRightBrace = str -> str.endsWith("}");
+        Predicate<String> hasLeftAndRightBrace = hasLeftBrace.and(hasRightBrace);
+
+        var result = hasLeftAndRightBrace.test("{Hello World!}");
         System.out.println(result);
     }
 }
@@ -120,5 +122,13 @@ public class LambdasDemo {
         // compose()
         result = addBraces.compose(replaceColon).apply(input);
 
+        System.out.println(result);
+ */
+
+/*
+     // The Predicate interface -> use for filtering or checking
+     // "Sky"
+        Predicate<String> isLongerThan5 = str -> str.length() > 5;
+        var result = isLongerThan5.test("sky");
         System.out.println(result);
  */
