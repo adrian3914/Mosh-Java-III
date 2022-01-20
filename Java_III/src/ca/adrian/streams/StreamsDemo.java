@@ -2,50 +2,28 @@ package ca.adrian.streams;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 
 public class StreamsDemo {
     public static void show(){
-        // SIMPLE REDUCERS stream<T> -> single Obj
+        // Reducing an stream with more control
         // list of movies -> list of movie Titles
         List<Movie> movies = List.of(
                 new Movie("a", 10),
-                new Movie("b", 15),
+                new Movie("b", 20),
                 new Movie("c", 30)
         );
 
-        // count
-       var count = movies.stream()
-               .count();
-        System.out.println("Total movies: " + count);
+        // map -> [10, 20, 30]
+        // reduce -> [30, 30]
+        // reduce -> 60
 
-       var anyMatch = movies.stream()
-                       .anyMatch(m -> m.getLikes() > 20);
-        System.out.println("Any movie likes > 20: " + anyMatch);
+        Optional<Integer> sum = movies.stream()
+                .map( m -> m.getLikes())
+                .reduce((a, b) -> a + b);
 
-       var allMatch = movies.stream()
-                       .allMatch(m -> m.getLikes() > 20);
-        System.out.println("All movie likes > 20: " + allMatch);
-
-        var firstMovie = movies.stream()
-                .findFirst()
-                .get();
-        System.out.println("First Movie: " + firstMovie);
-
-        var any = movies.stream()
-                .findAny()
-                .get();
-        System.out.println("Any Movie: " + any);
-
-        var max = movies.stream()
-                .max(Comparator.comparing(movie -> movie.getTitle()))
-                .get();
-        System.out.println("Max: " + max);
-
-        var min = movies.stream()
-                .min(Comparator.comparing(movie -> movie.getTitle()))
-                .get();
-        System.out.println("Min: " + min);
+        System.out.println(sum.orElse(0));
 
     }
 }
@@ -174,6 +152,51 @@ public class StreamsDemo {
                 .map(Movie::getTitle)
                 .peek(t -> System.out.println("Mapped:" + t))
                 .forEach(System.out::println);
+ */
+
+/*
+     // SIMPLE REDUCERS stream<T> -> single Obj
+        // list of movies -> list of movie Titles
+        List<Movie> movies = List.of(
+                new Movie("a", 10),
+                new Movie("b", 15),
+                new Movie("c", 30)
+        );
+
+        // count
+       var count = movies.stream()
+               .count();
+        System.out.println("Total movies: " + count);
+
+       var anyMatch = movies.stream()
+                       .anyMatch(m -> m.getLikes() > 20);
+        System.out.println("Any movie likes > 20: " + anyMatch);
+
+       var allMatch = movies.stream()
+                       .allMatch(m -> m.getLikes() > 20);
+        System.out.println("All movie likes > 20: " + allMatch);
+
+        var firstMovie = movies.stream()
+                .findFirst()
+                .get();
+        System.out.println("First Movie: " + firstMovie);
+
+        var any = movies.stream()
+                .findAny()
+                .get();
+        System.out.println("Any Movie: " + any);
+
+        var max = movies.stream()
+                .max(Comparator.comparing(movie -> movie.getTitle()))
+                .get();
+        System.out.println("Max: " + max);
+
+        var min = movies.stream()
+                .min(Comparator.comparing(movie -> movie.getTitle()))
+                .get();
+        System.out.println("Min: " + min);
+
+    }
  */
 
 
