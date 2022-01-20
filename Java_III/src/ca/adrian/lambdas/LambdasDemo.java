@@ -5,12 +5,12 @@ import java.util.function.*;
 public class LambdasDemo {
 
     public static void show(){
-        // Combining predicates
-        Predicate<String> hasLeftBrace = str -> str.startsWith("{");
-        Predicate<String> hasRightBrace = str -> str.endsWith("}");
-        Predicate<String> hasLeftAndRightBrace = hasLeftBrace.and(hasRightBrace);
+        // a, b -> a+b -> square
+        // BinaryOperator interface
+        BinaryOperator<Integer> sum = (a, b) -> a + b;
+        Function<Integer, Integer> square = a -> a * a;
 
-        var result = hasLeftAndRightBrace.test("{Hello World!}");
+        var result  = sum.andThen(square).apply(2,1);
         System.out.println(result);
     }
 }
@@ -130,5 +130,13 @@ public class LambdasDemo {
      // "Sky"
         Predicate<String> isLongerThan5 = str -> str.length() > 5;
         var result = isLongerThan5.test("sky");
+        System.out.println(result);
+
+        // Combining predicates
+        Predicate<String> hasLeftBrace = str -> str.startsWith("{");
+        Predicate<String> hasRightBrace = str -> str.endsWith("}");
+        Predicate<String> hasLeftAndRightBrace = hasLeftBrace.and(hasRightBrace);
+
+        var result = hasLeftAndRightBrace.test("{Hello World!}");
         System.out.println(result);
  */
