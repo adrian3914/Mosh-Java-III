@@ -6,8 +6,7 @@ import java.util.List;
 
 public class StreamsDemo {
     public static void show(){
-        // GETTING DISTINCT ELEMENTS
-
+        // PEEK -> good for trouble shouting problems
         // list of movies -> list of movie Titles
         List<Movie> movies = List.of(
                 new Movie("a", 10),
@@ -16,10 +15,11 @@ public class StreamsDemo {
                 new Movie("c", 30)
         );
 
-        // Getting unique values with distinct()
         movies.stream()
-                .map(Movie::getLikes)
-                .distinct()
+                .filter( m -> m.getLikes() > 10)
+                .peek(m -> System.out.println("Filtered:" + m.getLikes()))
+                .map(Movie::getTitle)
+                .peek(t -> System.out.println("Mapped:" + t))
                 .forEach(System.out::println);
     }
 }
@@ -121,6 +121,15 @@ public class StreamsDemo {
         movies.stream()
                 .sorted(Comparator.comparing(Movie::getTitle).reversed())
                 .forEach(m -> System.out.println(m.getTitle()));
+ */
+
+/*
+
+    // GETTING UNIQUE VALUES WITH DISTINCT()
+        movies.stream()
+                .map(Movie::getLikes)
+                .distinct()
+                .forEach(System.out::println);
  */
 
 
