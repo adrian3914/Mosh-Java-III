@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class StreamsDemo {
@@ -12,21 +13,15 @@ public class StreamsDemo {
         List<Movie> movies = List.of(
                 new Movie("a", 10),
                 new Movie("b", 15),
-                new Movie("c", 20)
+                new Movie("c", 30)
 
         );
 
-        // map()
+        // Slicing a stream
         movies.stream()
-                .map(movie -> movie.getTitle())
-                .forEach(movie -> System.out.println(movie));
+                .takeWhile( m -> m.getLikes() < 30)
+                .forEach(m -> System.out.println(m.getTitle()));
 
-        // flatMap()
-        // Stream<List<x>> -> Stream<x>
-        var stream = Stream.of(List.of(1, 2, 3), List.of(4, 5, 6));
-        stream
-                .flatMap(list -> list.stream())
-                .forEach(n -> System.out.println(n));
     }
 }
 
@@ -79,4 +74,33 @@ public class StreamsDemo {
         Stream.iterate(1, n -> n + 1)
                 .limit(10)
                 .forEach(n -> System.out.println(n));
+ */
+
+/*
+        // MAPPING ELEMENTS
+          List<Movie> movies = List.of(
+                new Movie("a", 10),
+                new Movie("b", 15),
+                new Movie("c", 20)
+
+        );
+         // map()
+        movies.stream()
+                .map(movie -> movie.getTitle())
+                .forEach(movie -> System.out.println(movie));
+
+        // flatMap()
+        // Stream<List<x>> -> Stream<x>
+        var stream = Stream.of(List.of(1, 2, 3), List.of(4, 5, 6));
+        stream
+                .flatMap(list -> list.stream())
+                .forEach(n -> System.out.println(n));
+ */
+
+/*
+        // FILTERING   -> -> this does not affect our water Tank List<Movie> only add a pipe
+        Predicate<Movie> isPopular = m -> m.getLikes() > 10;
+        movies.stream()
+                .filter(isPopular)
+                .forEach(movie -> System.out.println(movie));
  */
