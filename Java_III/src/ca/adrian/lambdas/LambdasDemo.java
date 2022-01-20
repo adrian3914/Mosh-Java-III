@@ -5,23 +5,10 @@ import java.util.function.*;
 public class LambdasDemo {
 
     public static void show(){
-      // Composing functions
-        // input: "key:value"
-        // first: "key=value"
-        // second: {key=value}
-        String input = "key:value";
-        Function<String, String> replaceColon = inputStr -> inputStr.replace(':', '=');
-        Function<String, String> addBraces = inputStr -> "{" + inputStr + "}";
-
-        // Declarative Programming
-        // andThen()
-        var result = replaceColon
-                .andThen(addBraces)
-                .apply(input);
-
-        // compose()
-        result = addBraces.compose(replaceColon).apply(input);
-
+      // The Predicate interface -> use for filtering or checking
+      // "Sky"
+        Predicate<String> isLongerThan5 = str -> str.length() > 5;
+        var result = isLongerThan5.test("sky");
         System.out.println(result);
     }
 }
@@ -113,4 +100,25 @@ public class LambdasDemo {
         Function<String, Integer> map = str -> str.length();
         var length = map.apply("Adrian");
         System.out.println(length);
+ */
+
+/*
+        // Composing functions
+        // input: "key:value"
+        // first: "key=value"
+        // second: {key=value}
+        String input = "key:value";
+        Function<String, String> replaceColon = inputStr -> inputStr.replace(':', '=');
+        Function<String, String> addBraces = inputStr -> "{" + inputStr + "}";
+
+        // Declarative Programming
+        // andThen()
+        var result = replaceColon
+                .andThen(addBraces)
+                .apply(input);
+
+        // compose()
+        result = addBraces.compose(replaceColon).apply(input);
+
+        System.out.println(result);
  */
