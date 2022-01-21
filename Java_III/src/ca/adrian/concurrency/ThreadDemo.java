@@ -7,7 +7,5 @@ public class ThreadDemo {
         // CREATE A THREAD
         Thread thread = new Thread(new DownloadFileTask());
         thread.start();
-
-
     }
 }

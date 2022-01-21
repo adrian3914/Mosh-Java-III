@@ -1,20 +1,11 @@
 package ca.adrian;
 
-import ca.adrian.collections.Customer;
-import ca.adrian.collections.EmailComparator;
-import ca.adrian.collections.MapDemo;
-import ca.adrian.collections.SetDemo;
-import ca.adrian.lambdas.LambdasDemo;
-import ca.adrian.streams.StreamsDemo;
-
-import java.util.*;
-
+import ca.adrian.concurrency.ThreadDemo;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Active Threads: " + Thread.activeCount());
-        System.out.println("Available Threads to JVM: " + Runtime.getRuntime().availableProcessors());
+        ThreadDemo.show();
     }
 }
 
@@ -123,5 +114,11 @@ public class Main {
         var removedC = queue.remove(); // throws exception if queue is empty
         queue.poll(); // return null if queue is empty
         System.out.println(queue);
+ */
+
+/*
+    THREADS
+     System.out.println("Active Threads: " + Thread.activeCount());
+     System.out.println("Available Threads to JVM: " + Runtime.getRuntime().availableProcessors());
  */
 
