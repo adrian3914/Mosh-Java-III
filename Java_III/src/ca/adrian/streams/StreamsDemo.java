@@ -1,13 +1,13 @@
 package ca.adrian.streams;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 public class StreamsDemo {
     public static void show(){
-        // Reducing an stream with more control
+        // COLLECTORS Stream<T> -> collect -> List, Queue,  Map
         // list of movies -> list of movie Titles
         List<Movie> movies = List.of(
                 new Movie("a", 10),
@@ -15,22 +15,43 @@ public class StreamsDemo {
                 new Movie("c", 30)
         );
 
-        // map -> [10, 20, 30]
-        // reduce -> [30, 30]
-        // reduce -> 60
+        // Set<Movie>
+        var set = movies.stream()
+                .filter(m -> m.getLikes() < 30)
+                .collect(Collectors.toSet());
 
-        Integer sum = movies.stream()
-                .map( m -> m.getLikes())
-                .reduce(0, Integer::sum);
+        // List<Movie>
+        var list = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                .collect(Collectors.toList());
 
-        System.out.println(sum);
+        // Map<K, V>
+        // Key: title, value: Movie Object
+        var map = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                .collect(Collectors.toMap(Movie::getTitle, Function.identity())); // this will return the movie object as the value m -> m
 
+        // Collectors Class that implements Collector Interface, sum
+        var sumOfLikes = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                        .collect(Collectors.summingInt(Movie::getLikes));
+
+        // Statistics using summarizing
+        var statistics = movies.stream()
+                .filter( m -> m.getLikes() > 10)
+                .collect(Collectors.summarizingInt(m -> m.getLikes()));
+
+        // Joining Values
+        var joiningValues = movies.stream()
+                        .map(m -> m.getTitle())
+                        .collect(Collectors.joining(", "));
+
+        System.out.println(joiningValues);
     }
 }
 
 /*
     // STREAMS
-
         List<Movie> movies = List.of(
                 new Movie("a", 10),
                 new Movie("b", 15),
@@ -197,6 +218,26 @@ public class StreamsDemo {
         System.out.println("Min: " + min);
 
     }
+ */
+
+/*
+     // Reducing an stream with more control
+        // list of movies -> list of movie Titles
+        List<Movie> movies = List.of(
+                new Movie("a", 10),
+                new Movie("b", 20),
+                new Movie("c", 30)
+        );
+
+        // map -> [10, 20, 30]
+        // reduce -> [30, 30]
+        // reduce -> 60
+
+        Integer sum = movies.stream()
+                .map( m -> m.getLikes())
+                .reduce(0, Integer::sum);
+
+        System.out.println(sum);
  */
 
 
