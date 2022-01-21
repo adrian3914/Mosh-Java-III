@@ -5,16 +5,17 @@ import java.util.List;
 
 public class ThreadDemo {
     public static void show(){
-        // RACE CONDITION
-        // Showing the total bytes we have downloaded so far
-        var status  = new DownloadStatus();
-
-        // List of threads
+        // CONFINEMENT, THREADS are not modifying the same object
         List<Thread> threads = new ArrayList<>();
+        List<DownloadFileTask> tasks = new ArrayList<>();
+
 
         // start 10 threads simultaneously
         for (int i = 0; i < 10; i++) {
-            Thread thread = new Thread(new DownloadFileTask(status));
+            var task = new DownloadFileTask();
+            tasks.add(task);
+
+            Thread thread = new Thread(task);
             thread.start();
             threads.add(thread); // adding to List<Thread>
         }
@@ -28,7 +29,11 @@ public class ThreadDemo {
             }
         }
 
-        System.out.println(status.getTotalBytes());
+        var totalBytes = tasks.stream()
+                .map(t -> t.getStatus().getTotalBytes())
+                .reduce(Integer::sum);
+
+        System.out.println(totalBytes);
 
     }
 }
