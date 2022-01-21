@@ -6,22 +6,19 @@ import java.util.stream.Collectors;
 
 public class StreamsDemo {
     public static void show(){
-        // GROUPING ELEMENTS
+        // GROUPING ELEMENTS -> groupingBy()
         List<Movie> movies = List.of(
                 new Movie("a", 10, Genre.THRILLER ),
                 new Movie("b", 20, Genre.ACTION),
                 new Movie("c", 30, Genre.ACTION)
         );
 
-        // Grouping
-        var map = movies.stream()
+        var result = movies.stream()
                 .collect(Collectors.groupingBy(
-                        Movie::getGenre,
-                        Collectors.mapping(
-                                Movie::getTitle,
-                                Collectors.joining(", "))));
-
-        System.out.println(map);
+                        m-> m.getLikes() > 20,
+                        Collectors.mapping( m -> m.getTitle(), Collectors.joining(", "))
+                ));
+        System.out.println("Movies > 20 Likes breakdown:\n" + result);
 
     }
 }
@@ -257,5 +254,24 @@ public class StreamsDemo {
                         .collect(Collectors.joining(", "));
 
         System.out.println(joiningValues);
+ */
+
+/*
+     // GROUPING ELEMENTS
+        List<Movie> movies = List.of(
+                new Movie("a", 10, Genre.THRILLER ),
+                new Movie("b", 20, Genre.ACTION),
+                new Movie("c", 30, Genre.ACTION)
+        );
+
+        // Grouping
+        var map = movies.stream()
+                .collect(Collectors.groupingBy(
+                        Movie::getGenre,
+                        Collectors.mapping(
+                                Movie::getTitle,
+                                Collectors.joining(", "))));
+
+        System.out.println(map);
  */
 
