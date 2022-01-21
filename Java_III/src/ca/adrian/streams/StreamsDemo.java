@@ -1,24 +1,10 @@
 package ca.adrian.streams;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
+import java.util.stream.IntStream;
 
 public class StreamsDemo {
     public static void show(){
-        // GROUPING ELEMENTS -> groupingBy()
-        List<Movie> movies = List.of(
-                new Movie("a", 10, Genre.THRILLER ),
-                new Movie("b", 20, Genre.ACTION),
-                new Movie("c", 30, Genre.ACTION)
-        );
-
-        var result = movies.stream()
-                .collect(Collectors.groupingBy(
-                        m-> m.getLikes() > 20,
-                        Collectors.mapping( m -> m.getTitle(), Collectors.joining(", "))
-                ));
-        System.out.println("Movies > 20 Likes breakdown:\n" + result);
 
     }
 }
@@ -275,3 +261,18 @@ public class StreamsDemo {
         System.out.println(map);
  */
 
+/*
+     // GROUPING ELEMENTS -> groupingBy()
+        List<Movie> movies = List.of(
+                new Movie("a", 10, Genre.THRILLER ),
+                new Movie("b", 20, Genre.ACTION),
+                new Movie("c", 30, Genre.ACTION)
+        );
+
+        var result = movies.stream()
+                .collect(Collectors.groupingBy(
+                        m-> m.getLikes() > 20,
+                        Collectors.mapping( m -> m.getTitle(), Collectors.joining(", "))
+                ));
+        System.out.println("Movies > 20 Likes breakdown:\n" + result);
+ */

@@ -13,8 +13,8 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        StreamsDemo.show();
-
+        System.out.println("Active Threads: " + Thread.activeCount());
+        System.out.println("Available Threads to JVM: " + Runtime.getRuntime().availableProcessors());
     }
 }
 
