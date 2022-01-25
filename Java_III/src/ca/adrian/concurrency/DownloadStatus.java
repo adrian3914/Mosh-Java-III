@@ -18,10 +18,8 @@ public class DownloadStatus {
         }
     }
 
-    public void incrementTotalFiles(){
-        synchronized (totalBytesLock){
+    public synchronized void incrementTotalFiles(){
             totalFiles++;
-        }
     }
 
     public int getTotalFiles() {
