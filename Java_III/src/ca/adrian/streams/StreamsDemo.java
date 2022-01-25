@@ -80,14 +80,14 @@ public class StreamsDemo {
  */
 
 /*
-        // FILTERING   -> -> this does not affect our water Tank List<Movie> only add a pipe
+        // FILTERING   -> this does not affect our water Tank List<Movie> only add a pipe
         Predicate<Movie> isPopular = m -> m.getLikes() > 10;
         movies.stream()
                 .filter(isPopular)
                 .forEach(movie -> System.out.println(movie));
 
         // SLICING
-         // Slicing a stream
+        // Slicing a stream
         movies.stream()
                 .takeWhile( m -> m.getLikes() < 30)
                 .forEach(m -> System.out.println(m.getTitle()));
@@ -180,7 +180,7 @@ public class StreamsDemo {
  */
 
 /*
-     // Reducing an stream with more control
+     // Reducing a stream with more control
         // list of movies -> list of movie Titles
         List<Movie> movies = List.of(
                 new Movie("a", 10),
@@ -195,7 +195,6 @@ public class StreamsDemo {
         Integer sum = movies.stream()
                 .map( m -> m.getLikes())
                 .reduce(0, Integer::sum);
-
         System.out.println(sum);
  */
 
