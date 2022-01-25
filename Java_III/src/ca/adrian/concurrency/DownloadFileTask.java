@@ -3,8 +3,8 @@ package ca.adrian.concurrency;
 public class DownloadFileTask implements Runnable{
     private DownloadStatus status;
 
-    public DownloadFileTask() {
-        this.status = new DownloadStatus();
+    public DownloadFileTask(DownloadStatus status) {
+        this.status = status;
     }
 
     @Override
@@ -16,7 +16,11 @@ public class DownloadFileTask implements Runnable{
                 return;
             status.incrementTotalBytes();
         }
-
+        status.done();
+        // notify() must be in a synchronized block if not throws IllegalMonitorStateException
+        synchronized (status){
+            status.notifyAll(); // notifying the all threads state of status obj has changed
+        }
         System.out.println("Download complete: " + Thread.currentThread().getName());
     }
 
@@ -31,6 +35,5 @@ public class DownloadFileTask implements Runnable{
     public DownloadStatus getStatus() {
         return status;
     }
-
 
 }
