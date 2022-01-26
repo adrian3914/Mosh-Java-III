@@ -4,13 +4,23 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
+import java.util.function.Supplier;
 
 public class ExecutorsDemo {
     public static void show(){
-        // CREATING A COMPLETABLE FUTURE
+        // CREATING A COMPLETABLE FUTURE OBJECT
         Runnable task  = () -> System.out.println("a");
-        var future = CompletableFuture.runAsync(task);
+        Supplier<Integer> supplier = () -> 1;
 
+        var future1 = CompletableFuture.runAsync(task); // does not return a value
+        var future2 = CompletableFuture.supplyAsync(supplier); // returns a value
+
+        try {
+            var result = future2.get();
+            System.out.println(result);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
 
