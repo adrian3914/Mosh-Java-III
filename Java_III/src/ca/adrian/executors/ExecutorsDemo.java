@@ -2,23 +2,20 @@ package ca.adrian.executors;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
 import java.util.function.Supplier;
 
 public class ExecutorsDemo {
     public static void show(){
-        // CREATING A COMPLETABLE FUTURE OBJECT
-        Runnable task  = () -> System.out.println("a");
-        Supplier<Integer> supplier = () -> 1;
+        // CREATING A ASYNCHRONOUS API
+        var service  = new MailService();
+        service.sendAsync();
 
-        var future1 = CompletableFuture.runAsync(task); // does not return a value
-        var future2 = CompletableFuture.supplyAsync(supplier); // returns a value
+        System.out.println("Hello World.");
 
+        // Since we do see it since it is a console app
         try {
-            var result = future2.get();
-            System.out.println(result);
-        } catch (InterruptedException | ExecutionException e) {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -59,5 +56,21 @@ public class ExecutorsDemo {
             e.printStackTrace();
         } finally {
             executor.shutdown();
+        }
+ */
+
+/*
+    // CREATING A COMPLETABLE FUTURE OBJECT
+        Runnable task  = () -> System.out.println("a");
+        Supplier<Integer> supplier = () -> 1;
+
+        var future1 = CompletableFuture.runAsync(task); // does not return a value
+        var future2 = CompletableFuture.supplyAsync(supplier); // returns a value
+
+        try {
+            var result = future2.get();
+            System.out.println(result);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
         }
  */
