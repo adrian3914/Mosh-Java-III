@@ -1,23 +1,28 @@
 package ca.adrian.executors;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
 
 public class ExecutorsDemo {
     public static void show(){
-        // CREATING A ASYNCHRONOUS API
-        var service  = new MailService();
-        service.sendAsync();
+        // RUNNING CODE ON COMPLETION
+        var future = CompletableFuture.supplyAsync(() -> 1);
+        future.thenRunAsync(() -> {
+            System.out.println(Thread.currentThread().getName());
+            System.out.println("Done");
+        });
 
-        System.out.println("Hello World.");
+        future.thenAcceptAsync( n -> {
+            System.out.println(Thread.currentThread().getName());
+            System.out.println(n);
+        });
 
-        // Since we do see it since it is a console app
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // This will run in the main thread
+        future.thenAccept( n -> System.out.println(n));
+        future.thenRun(() -> System.out.println("Hello"));
+
     }
 }
 
@@ -71,6 +76,21 @@ public class ExecutorsDemo {
             var result = future2.get();
             System.out.println(result);
         } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+ */
+
+/*
+      // CREATING A ASYNCHRONOUS API
+        var service  = new MailService();
+        service.sendAsync();
+
+        System.out.println("Hello World.");
+
+        // Since we do see it since it is a console app
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
  */
