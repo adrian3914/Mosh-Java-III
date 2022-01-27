@@ -7,22 +7,20 @@ import java.util.function.Supplier;
 
 public class ExecutorsDemo {
     public static void show(){
-        // RUNNING CODE ON COMPLETION
-        var future = CompletableFuture.supplyAsync(() -> 1);
-        future.thenRunAsync(() -> {
-            System.out.println(Thread.currentThread().getName());
-            System.out.println("Done");
-        });
+       // HANDLING EXCEPTIONS
+       var future = CompletableFuture.supplyAsync(() -> {
+           System.out.println("Getting the current weather");
+           throw new IllegalStateException(); // we wont see the exception since it is thrown in another thread.
+       });
 
-        future.thenAcceptAsync( n -> {
-            System.out.println(Thread.currentThread().getName());
-            System.out.println(n);
-        });
-
-        // This will run in the main thread
-        future.thenAccept( n -> System.out.println(n));
-        future.thenRun(() -> System.out.println("Hello"));
-
+       // to see exception in Main thread we must call get() Future interface
+        try {
+            var temperature = future.exceptionally(ex -> 1).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
 
@@ -93,4 +91,24 @@ public class ExecutorsDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+ */
+
+
+/*
+     // RUNNING CODE ON COMPLETION
+        var future = CompletableFuture.supplyAsync(() -> 1);
+        future.thenRunAsync(() -> {
+            System.out.println(Thread.currentThread().getName());
+            System.out.println("Done");
+        });
+
+        future.thenAcceptAsync( n -> {
+            System.out.println(Thread.currentThread().getName());
+            System.out.println(n);
+        });
+
+        // This will run in the main thread
+        future.thenAccept( n -> System.out.println(n));
+        future.thenRun(() -> System.out.println("Hello"));
+
  */
