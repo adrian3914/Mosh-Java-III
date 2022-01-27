@@ -1,12 +1,13 @@
 package ca.adrian;
 
 import ca.adrian.concurrency.ThreadDemo;
+import ca.adrian.executors.CompletableFuturesDemo;
 import ca.adrian.executors.ExecutorsDemo;
 
 public class Main {
 
     public static void main(String[] args) {
-        ExecutorsDemo.show();
+        CompletableFuturesDemo.show();
     }
 }
 
