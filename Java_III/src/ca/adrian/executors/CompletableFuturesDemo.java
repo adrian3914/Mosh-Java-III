@@ -3,20 +3,24 @@ package ca.adrian.executors;
 import java.util.concurrent.CompletableFuture;
 
 public class CompletableFuturesDemo {
-    // COMPOSING COMPLETABLE FUTURES
-    public static CompletableFuture<String> getUserEmailAsync(){
-        return CompletableFuture.supplyAsync(() -> "email");// query database
-    }
-
-    public static CompletableFuture<String> getPlayListAsync(String email){
-        return CompletableFuture.supplyAsync(() -> "playlist");
-    }
 
     public static void show(){
-        // email -> playlist
-        getUserEmailAsync()
-                .thenCompose(CompletableFuturesDemo::getPlayListAsync)
-                .thenAccept(playlist -> System.out.println(playlist));
+       // COMBINING COMPLETABLE FUTURE
+        // 2 tasks async in different threads combining the result.
+
+        var first = CompletableFuture
+                .supplyAsync(() -> "20USD")
+                .thenApply(str -> {
+                    String price = str.replace("USD", "");
+                    return Integer.parseInt(price);
+                });
+
+        var second =CompletableFuture.supplyAsync(() -> 0.9);
+
+        // Combining Result
+        first
+                .thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
+                .thenAccept((n) -> System.out.println(n));
     }
 }
 
@@ -99,5 +103,23 @@ public class CompletableFuturesDemo {
                 .thenApply(CompletableFuturesDemo::toFahrenheit) // map c -> f
                 .thenAccept(f -> System.out.println(f)); // accept result and sys out
 
+    }
+ */
+
+/*
+        // COMPOSING COMPLETABLE FUTURES
+    public static CompletableFuture<String> getUserEmailAsync(){
+        return CompletableFuture.supplyAsync(() -> "email");// query database
+    }
+
+    public static CompletableFuture<String> getPlayListAsync(String email){
+        return CompletableFuture.supplyAsync(() -> "playlist");
+    }
+
+    public static void show(){
+        // email -> playlist
+        getUserEmailAsync()
+                .thenCompose(CompletableFuturesDemo::getPlayListAsync)
+                .thenAccept(playlist -> System.out.println(playlist));
     }
  */
