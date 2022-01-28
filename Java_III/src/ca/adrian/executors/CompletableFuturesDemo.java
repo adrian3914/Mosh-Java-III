@@ -1,26 +1,34 @@
 package ca.adrian.executors;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class CompletableFuturesDemo {
 
     public static void show(){
-       // COMBINING COMPLETABLE FUTURE
-        // 2 tasks async in different threads combining the result.
+      // WAITING FOR MANY TASKS
+        var first = CompletableFuture.supplyAsync( () -> 1);
+        var second = CompletableFuture.supplyAsync( () -> 2);
+        var third = CompletableFuture.supplyAsync( () -> 3);
 
-        var first = CompletableFuture
-                .supplyAsync(() -> "20USD")
-                .thenApply(str -> {
-                    String price = str.replace("USD", "");
-                    return Integer.parseInt(price);
-                });
+        // waiting for all the tasks to complete
+        var all =CompletableFuture.allOf(first, second, third);
 
-        var second =CompletableFuture.supplyAsync(() -> 0.9);
-
-        // Combining Result
-        first
-                .thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
-                .thenAccept((n) -> System.out.println(n));
+        all.thenRun(() -> {
+            try {
+                var firstResult = first.get();
+                var secondResult = second.get();
+                var thirdResult = third.get();
+                System.out.println(firstResult);
+                System.out.println(secondResult);
+                System.out.println(thirdResult);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            System.out.println("All tasks completed successfully");
+        });
     }
 }
 
@@ -122,4 +130,23 @@ public class CompletableFuturesDemo {
                 .thenCompose(CompletableFuturesDemo::getPlayListAsync)
                 .thenAccept(playlist -> System.out.println(playlist));
     }
+ */
+
+/*
+     // COMBINING COMPLETABLE FUTURES
+        // 2 tasks async in different threads combining the result.
+
+        var first = CompletableFuture
+                .supplyAsync(() -> "20USD")
+                .thenApply(str -> {
+                    String price = str.replace("USD", "");
+                    return Integer.parseInt(price);
+                });
+
+        var second =CompletableFuture.supplyAsync(() -> 0.9);
+
+        // Combining Result
+        first
+                .thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
+                .thenAccept((n) -> System.out.println(n));
  */
