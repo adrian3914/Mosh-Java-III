@@ -1,20 +1,22 @@
 package ca.adrian.executors;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 public class CompletableFuturesDemo {
-
-    public static int toFahrenheit(int celsius){
-        return (int)(celsius * 1.8) + 32;
+    // COMPOSING COMPLETABLE FUTURES
+    public static CompletableFuture<String> getUserEmailAsync(){
+        return CompletableFuture.supplyAsync(() -> "email");// query database
     }
-    public static void show(){
-        // TRANSFORMING A COMPLETABLE FUTURE
-        var future  = CompletableFuture.supplyAsync(() -> 20);
-        future
-                .thenApply(CompletableFuturesDemo::toFahrenheit) // map c -> f
-                .thenAccept(f -> System.out.println(f)); // accept result and sys out
 
+    public static CompletableFuture<String> getPlayListAsync(String email){
+        return CompletableFuture.supplyAsync(() -> "playlist");
+    }
+
+    public static void show(){
+        // email -> playlist
+        getUserEmailAsync()
+                .thenCompose(CompletableFuturesDemo::getPlayListAsync)
+                .thenAccept(playlist -> System.out.println(playlist));
     }
 }
 
@@ -84,4 +86,18 @@ public class CompletableFuturesDemo {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+ */
+
+/*
+     // TRANSFORMING A COMPLETABLE FUTURE
+    public static int toFahrenheit(int celsius){
+        return (int)(celsius * 1.8) + 32;
+    }
+    public static void show(){
+        var future  = CompletableFuture.supplyAsync(() -> 20);
+        future
+                .thenApply(CompletableFuturesDemo::toFahrenheit) // map c -> f
+                .thenAccept(f -> System.out.println(f)); // accept result and sys out
+
+    }
  */

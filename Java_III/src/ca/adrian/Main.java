@@ -1,8 +1,10 @@
 package ca.adrian;
 
-import ca.adrian.concurrency.ThreadDemo;
 import ca.adrian.executors.CompletableFuturesDemo;
-import ca.adrian.executors.ExecutorsDemo;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 
 public class Main {
 
