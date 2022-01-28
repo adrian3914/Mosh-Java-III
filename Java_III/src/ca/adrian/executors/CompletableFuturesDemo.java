@@ -2,25 +2,24 @@ package ca.adrian.executors;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 public class CompletableFuturesDemo {
-
     public static void show(){
-        // WAITING FOR THE FIRST TASKS
-        /*
-            CompletableFuture.anyOff() -> will return the fastest tasks
-                In this case we are calling two APIs to get the temp. We want to show the result of the fastest,
-                so whichever API returns the temp first that’s the one we will take to show the temp.
-         */
-        var first = CompletableFuture.supplyAsync(() -> {
-            LongTask.simulate();
-            return 20;
+        // HANDLING TIMEOUTS
+        var future = CompletableFuture.supplyAsync(() -> {
+            LongTask.simulate(); // 5 second delay
+            return 1;
         });
 
-        var second = CompletableFuture.supplyAsync(() -> 20);
-
-        CompletableFuture.anyOf(first, second)
-                .thenAccept(temp -> System.out.println(temp));
+        try {
+            var result = future
+                    .completeOnTimeout(0, 1,TimeUnit.SECONDS)
+                    .get();
+            System.out.println(result);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
 
@@ -167,4 +166,22 @@ public class CompletableFuturesDemo {
             }
             System.out.println("All tasks completed successfully");
         });
+ */
+
+/*
+     // WAITING FOR THE FIRST TASKS
+
+            CompletableFuture.anyOff() -> will return the fastest tasks
+                In this case we are calling two APIs to get the temp. We want to show the result of the fastest,
+                so whichever API returns the temp first that’s the one we will take to show the temp.
+
+            var first = CompletableFuture.supplyAsync(() -> {
+                LongTask.simulate();
+                return 20;
+            });
+
+                var second = CompletableFuture.supplyAsync(() -> 20);
+
+                    CompletableFuture.anyOf(first, second)
+                            .thenAccept(temp -> System.out.println(temp));
  */
