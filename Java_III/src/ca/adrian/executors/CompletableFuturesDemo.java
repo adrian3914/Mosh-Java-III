@@ -6,29 +6,21 @@ import java.util.concurrent.ExecutionException;
 public class CompletableFuturesDemo {
 
     public static void show(){
-      // WAITING FOR MANY TASKS
-        var first = CompletableFuture.supplyAsync( () -> 1);
-        var second = CompletableFuture.supplyAsync( () -> 2);
-        var third = CompletableFuture.supplyAsync( () -> 3);
-
-        // waiting for all the tasks to complete
-        var all =CompletableFuture.allOf(first, second, third);
-
-        all.thenRun(() -> {
-            try {
-                var firstResult = first.get();
-                var secondResult = second.get();
-                var thirdResult = third.get();
-                System.out.println(firstResult);
-                System.out.println(secondResult);
-                System.out.println(thirdResult);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            System.out.println("All tasks completed successfully");
+        // WAITING FOR THE FIRST TASKS
+        /*
+            CompletableFuture.anyOff() -> will return the fastest tasks
+                In this case we are calling two APIs to get the temp. We want to show the result of the fastest,
+                so whichever API returns the temp first that’s the one we will take to show the temp.
+         */
+        var first = CompletableFuture.supplyAsync(() -> {
+            LongTask.simulate();
+            return 20;
         });
+
+        var second = CompletableFuture.supplyAsync(() -> 20);
+
+        CompletableFuture.anyOf(first, second)
+                .thenAccept(temp -> System.out.println(temp));
     }
 }
 
@@ -149,4 +141,30 @@ public class CompletableFuturesDemo {
         first
                 .thenCombine(second, (price, exchangeRate) -> price * exchangeRate)
                 .thenAccept((n) -> System.out.println(n));
+ */
+
+/*
+         // WAITING FOR MANY TASKS
+        var first = CompletableFuture.supplyAsync( () -> 1);
+        var second = CompletableFuture.supplyAsync( () -> 2);
+        var third = CompletableFuture.supplyAsync( () -> 3);
+
+        // waiting for all the tasks to complete
+        var all =CompletableFuture.allOf(first, second, third);
+
+        all.thenRun(() -> {
+            try {
+                var firstResult = first.get();
+                var secondResult = second.get();
+                var thirdResult = third.get();
+                System.out.println(firstResult);
+                System.out.println(secondResult);
+                System.out.println(thirdResult);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            System.out.println("All tasks completed successfully");
+        });
  */
