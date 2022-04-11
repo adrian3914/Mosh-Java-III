@@ -11,6 +11,7 @@ public class Main {
             ExceptionsDemo.show();
         } catch (IOException e) {
             System.out.println("An unexpected error occurred.");
+            e.printStackTrace();
         }
     }
 }
