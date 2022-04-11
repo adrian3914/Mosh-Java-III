@@ -1,23 +1,16 @@
 package ca.adrian.exceptions;
 
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
-
 public class ExceptionsDemo {
-    public static void show(){
-        try (
-                var reader = new FileReader("file.txt");
-                var writer = new FileWriter("...");
-        ){
-            var value = reader.read();
+    public static void show() throws IOException {
+       var account = new Account();
+        try {
+            account.deposit(-1);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Logging");
+            throw e;
         }
     }
 
-    public static void sayHello(String name){
-        System.out.println(name.toUpperCase());
-    }
 }
