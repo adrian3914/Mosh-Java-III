@@ -14,4 +14,11 @@ public class User implements Comparable<User>{
         // this > o -> +1
         return points - other.points;
     }
+
+    @Override
+    public String toString() {
+        return "User {" +
+                "points=" + points +
+                '}';
+    }
 }
